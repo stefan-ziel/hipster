@@ -1,19 +1,16 @@
 package br.org.stefan.ziel.cdf.web.rest;
-import br.org.stefan.ziel.cdf.domain.Embarque;
 import br.org.stefan.ziel.cdf.domain.Resultado;
 import br.org.stefan.ziel.cdf.service.ResultadoService;
-import br.org.stefan.ziel.cdf.web.rest.errors.CustomParameterizedException;
 import br.org.stefan.ziel.cdf.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,16 +38,11 @@ public class ResultadoResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new resultado
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/resultados")
-    public ResponseEntity<Resultado> createResultado(@Valid @RequestBody Embarque embarque) throws URISyntaxException {
-        log.debug("REST request to create Resultado from Embarque : {}", embarque);
-        Resultado resultado = resultadoService.calcularFrete(embarque);
-        if (resultado == null) {
-            throw new CustomParameterizedException("semNegociacaoError", Long.toString(embarque.getId()));
-        }
-        return ResponseEntity.created(new URI("/api/resultados/" + resultado.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, resultado.getId().toString()))
-            .body(resultado);
+    @GetMapping("/resultados-do-embarque/{id}")
+    public ResponseEntity<Resultado> createResultado(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to create Resultado from Embarque : {}", id);
+        Optional<Resultado> resultado = resultadoService.calcularFrete(id);
+        return ResponseUtil.wrapOrNotFound(resultado);
     }
 
     /**
@@ -59,9 +51,9 @@ public class ResultadoResource {
      * @return the ResponseEntity with status 200 (OK) and the list of resultados in body
      */
     @GetMapping("/resultados-do-dia/{dataDeColeta}")
-    public List<Resultado> getResultadosDoDia(@PathVariable Instant dataDeColeta) {
+    public List<Resultado> getResultadosDoDia(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataDeColeta) {
         log.debug("REST request to criar todos resultados do dia");
-        return resultadoService.calcularFretesDoDia(dataDeColeta);
+        return resultadoService.calcularFretesDoDia(dataDeColeta.toInstant());
     }
     
     /**

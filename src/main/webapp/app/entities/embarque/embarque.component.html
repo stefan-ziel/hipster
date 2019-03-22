@@ -36,7 +36,7 @@
                 <td>{{embarque.dataDeColeta | date:'medium'}}</td>
                 <td>
                     <div *ngIf="embarque.embarcadora">
-                        <a [routerLink]="['../embarcadora', embarque.embarcadora?.id, 'view' ]" >{{embarque.embarcadora?.id}}</a>
+                        <a [routerLink]="['../embarcadora', embarque.embarcadora?.id, 'view' ]" >{{embarque.embarcadora?.nome}}</a>
                     </div>
                 </td>
                 <td class="text-right">

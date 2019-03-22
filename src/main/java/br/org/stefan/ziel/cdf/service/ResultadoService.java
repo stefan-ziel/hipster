@@ -15,10 +15,10 @@ public interface ResultadoService {
 	/**
      * Criar um novo resultado a partir do embarque selecionando a melhor negociçao de frete.
      *
-     * @param embarque embarque em questão 
+     * @param embarqueId embarque em questão 
      * @return o resultado de calculo persistido
      */
-    Resultado calcularFrete(Embarque embarque);
+	Optional<Resultado> calcularFrete(Long embarqueId);
 	
 	/**
      * Criar uma Lista de novos resultados a a serem embarcados numa data.

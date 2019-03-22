@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IResultado } from 'app/shared/model/resultado.model';
+import { IEmbarque } from 'app/shared/model/embarque.model';
 
 type EntityResponseType = HttpResponse<IResultado>;
 type EntityArrayResponseType = HttpResponse<IResultado[]>;
@@ -15,20 +16,14 @@ type EntityArrayResponseType = HttpResponse<IResultado[]>;
 @Injectable({ providedIn: 'root' })
 export class ResultadoService {
     public resourceUrl = SERVER_API_URL + 'api/resultados';
+    public calcUrlEmbarque = SERVER_API_URL + 'api/resultados-do-embarque';
+    public calcUrlDia = SERVER_API_URL + 'api/resultados-do-dia';
 
     constructor(protected http: HttpClient) {}
 
-    create(resultado: IResultado): Observable<EntityResponseType> {
-        const copy = this.convertDateFromClient(resultado);
+    calcEmbarque(id: number): Observable<EntityResponseType> {
         return this.http
-            .post<IResultado>(this.resourceUrl, copy, { observe: 'response' })
-            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
-    }
-
-    update(resultado: IResultado): Observable<EntityResponseType> {
-        const copy = this.convertDateFromClient(resultado);
-        return this.http
-            .put<IResultado>(this.resourceUrl, copy, { observe: 'response' })
+            .get<IResultado>(`${this.calcUrlEmbarque}/${id}`, { observe: 'response' })
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
@@ -47,14 +42,6 @@ export class ResultadoService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-    }
-
-    protected convertDateFromClient(resultado: IResultado): IResultado {
-        const copy: IResultado = Object.assign({}, resultado, {
-            previsaoDeEntrega:
-                resultado.previsaoDeEntrega != null && resultado.previsaoDeEntrega.isValid() ? resultado.previsaoDeEntrega.toJSON() : null
-        });
-        return copy;
     }
 
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {

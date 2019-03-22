@@ -45,11 +45,29 @@ public class ResultadoServiceImpl implements ResultadoService {
     /**
      * Criar um novo resultado a partir do embarque selecionando a melhor negociçao de frete.
      *
-     * @param embarque embarque em questão 
+     * @param embarqueId embarque em questão 
      * @return o resultado de calculo persistido
      */
 	@Override
-	public Resultado calcularFrete(Embarque embarque) {
+	public Optional<Resultado> calcularFrete(Long embarqueId) {
+		Resultado resultado;
+		Optional<Embarque> embarque = embarqueRepository.findById(embarqueId);
+		if(embarque.isPresent()) {
+			resultado = calcularFrete(embarque.get());
+		} else {
+			log.warn("No embarque found for id: {}", embarqueId);
+			resultado = null;
+		}
+		return Optional.ofNullable(resultado);
+	}
+	
+    /**
+     * Criar um novo resultado a partir do embarque selecionando a melhor negociçao de frete.
+     *
+     * @param embarque embarque em questão 
+     * @return o resultado de calculo persistido
+     */
+	Resultado calcularFrete(Embarque embarque) {
 		Optional<Resultado> resultadoExistente = resultadoRepository.findByEmbarque(embarque);
 		if(resultadoExistente.isPresent()) {
 			// já calculado que bom

@@ -32,7 +32,7 @@
                 <dt><span jhiTranslate="cdfApp.embarque.embarcadora">Embarcadora</span></dt>
                 <dd>
                     <div *ngIf="embarque.embarcadora">
-                        <a [routerLink]="['/embarcadora', embarque.embarcadora?.id, 'view']">{{embarque.embarcadora?.id}}</a>
+                        <a [routerLink]="['/embarcadora', embarque.embarcadora?.id, 'view']">{{embarque.embarcadora?.nome}}</a>
                     </div>
                 </dd>
             </dl>
@@ -47,6 +47,12 @@
                     [routerLink]="['/embarque', embarque.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/resultado', embarque.id, 'new']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'gear'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.calc"> Calculate</span>
             </button>
         </div>
     </div>
