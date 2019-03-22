@@ -1,0 +1,53 @@
+entity Embarcadora {
+	nome String required
+}
+
+entity Transportadora {
+	nome String required
+}
+
+enum CategoriaDeVeiculo {
+	VUC, TOCO, VAN, TRUCK, CARRETA
+}
+
+entity Embarque {
+	categoriaDeVeiculo CategoriaDeVeiculo,
+	origem String,
+    destino String,
+    qilometragem BigDecimal required,
+    peso BigDecimal required,
+    dataDeColeta Instant required,
+}
+
+relationship ManyToOne {
+	Embarque{embarcadora} to Embarcadora
+}
+
+entity NegociacaoDeFrete {
+	categoriaDeVeiculo CategoriaDeVeiculo,
+	pesoDe BigDecimal required,
+	pesoAte BigDecimal required,
+	precoPorQuilometro BigDecimal required,
+	prazoDeEntrega Integer required
+}
+
+relationship ManyToOne {
+	NegociacaoDeFrete{embarcadora} to Embarcadora,
+	NegociacaoDeFrete{transportadora} to Transportadora
+}
+
+entity Resultado {
+	valorCalculado BigDecimal required
+    previsaoDeEntrega Instant required
+}
+
+
+relationship OneToOne {
+	Resultado{embarque} to Embarque
+}
+
+relationship ManyToOne {
+	Resultado{melhorNegociacaoDeFrete} to NegociacaoDeFrete
+}
+
+service all with serviceImpl

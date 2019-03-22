@@ -1,0 +1,63 @@
+{
+    "name": "NegociacaoDeFrete",
+    "fields": [
+        {
+            "fieldName": "categoriaDeVeiculo",
+            "fieldType": "CategoriaDeVeiculo",
+            "fieldValues": "VUC,TOCO,VAN,TRUCK,CARRETA"
+        },
+        {
+            "fieldName": "pesoDe",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pesoAte",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "precoPorQuilometro",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prazoDeEntrega",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "embarcadora",
+            "otherEntityRelationshipName": "negociacaoDeFrete",
+            "relationshipName": "embarcadora",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transportadora",
+            "otherEntityRelationshipName": "negociacaoDeFrete",
+            "relationshipName": "transportadora",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190321222135",
+    "entityTableName": "negociacao_de_frete",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,45 @@
+{
+    "name": "Resultado",
+    "fields": [
+        {
+            "fieldName": "valorCalculado",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "previsaoDeEntrega",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "embarque",
+            "otherEntityRelationshipName": "resultado",
+            "relationshipName": "embarque",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "negociacaoDeFrete",
+            "otherEntityRelationshipName": "resultado",
+            "relationshipName": "melhorNegociacaoDeFrete",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190321222136",
+    "entityTableName": "resultado",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

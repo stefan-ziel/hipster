@@ -1,0 +1,21 @@
+{
+    "cdfApp": {
+        "transportadora": {
+            "home": {
+                "title": "Transportadoras",
+                "createLabel": "Criar novo Transportadora",
+                "createOrEditLabel": "Criar ou editar Transportadora"
+            },
+            "created": "Um novo Transportadora foi criado com o identificador {{ param }}",
+            "updated": "Um Transportadora foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Transportadora foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Transportadora {{ id }}?"
+            },
+            "detail": {
+                "title": "Transportadora"
+            },
+            "nome": "Nome"
+        }
+    }
+}

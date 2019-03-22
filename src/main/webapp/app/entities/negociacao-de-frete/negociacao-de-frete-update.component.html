@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-negociacao-de-frete-heading" jhiTranslate="cdfApp.negociacaoDeFrete.home.createOrEditLabel">Create or edit a Negociacao De Frete</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!negociacaoDeFrete.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="negociacaoDeFrete.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.categoriaDeVeiculo" for="field_categoriaDeVeiculo">Categoria De Veiculo</label>
+                    <select class="form-control" name="categoriaDeVeiculo" [(ngModel)]="negociacaoDeFrete.categoriaDeVeiculo" id="field_categoriaDeVeiculo" >
+                        <option value="VUC">{{'cdfApp.CategoriaDeVeiculo.VUC' | translate}}</option>
+                        <option value="TOCO">{{'cdfApp.CategoriaDeVeiculo.TOCO' | translate}}</option>
+                        <option value="VAN">{{'cdfApp.CategoriaDeVeiculo.VAN' | translate}}</option>
+                        <option value="TRUCK">{{'cdfApp.CategoriaDeVeiculo.TRUCK' | translate}}</option>
+                        <option value="CARRETA">{{'cdfApp.CategoriaDeVeiculo.CARRETA' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.pesoDe" for="field_pesoDe">Peso De</label>
+                    <input type="number" class="form-control" name="pesoDe" id="field_pesoDe"
+                        [(ngModel)]="negociacaoDeFrete.pesoDe" required/>
+                    <div [hidden]="!(editForm.controls.pesoDe?.dirty && editForm.controls.pesoDe?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pesoDe?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.pesoDe?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.pesoAte" for="field_pesoAte">Peso Ate</label>
+                    <input type="number" class="form-control" name="pesoAte" id="field_pesoAte"
+                        [(ngModel)]="negociacaoDeFrete.pesoAte" required/>
+                    <div [hidden]="!(editForm.controls.pesoAte?.dirty && editForm.controls.pesoAte?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pesoAte?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.pesoAte?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.precoPorQuilometro" for="field_precoPorQuilometro">Preco Por Quilometro</label>
+                    <input type="number" class="form-control" name="precoPorQuilometro" id="field_precoPorQuilometro"
+                        [(ngModel)]="negociacaoDeFrete.precoPorQuilometro" required/>
+                    <div [hidden]="!(editForm.controls.precoPorQuilometro?.dirty && editForm.controls.precoPorQuilometro?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.precoPorQuilometro?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.precoPorQuilometro?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.prazoDeEntrega" for="field_prazoDeEntrega">Prazo De Entrega</label>
+                    <input type="number" class="form-control" name="prazoDeEntrega" id="field_prazoDeEntrega"
+                        [(ngModel)]="negociacaoDeFrete.prazoDeEntrega" required/>
+                    <div [hidden]="!(editForm.controls.prazoDeEntrega?.dirty && editForm.controls.prazoDeEntrega?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.prazoDeEntrega?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.prazoDeEntrega?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.embarcadora" for="field_embarcadora">Embarcadora</label>
+                    <select class="form-control" id="field_embarcadora" name="embarcadora" [(ngModel)]="negociacaoDeFrete.embarcadora" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="embarcadoraOption.id === negociacaoDeFrete.embarcadora?.id ? negociacaoDeFrete.embarcadora : embarcadoraOption" *ngFor="let embarcadoraOption of embarcadoras; trackBy: trackEmbarcadoraById">{{embarcadoraOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.negociacaoDeFrete.transportadora" for="field_transportadora">Transportadora</label>
+                    <select class="form-control" id="field_transportadora" name="transportadora" [(ngModel)]="negociacaoDeFrete.transportadora" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transportadoraOption.id === negociacaoDeFrete.transportadora?.id ? negociacaoDeFrete.transportadora : transportadoraOption" *ngFor="let transportadoraOption of transportadoras; trackBy: trackTransportadoraById">{{transportadoraOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

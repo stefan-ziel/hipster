@@ -1,0 +1,57 @@
+{
+    "name": "Embarque",
+    "fields": [
+        {
+            "fieldName": "categoriaDeVeiculo",
+            "fieldType": "CategoriaDeVeiculo",
+            "fieldValues": "VUC,TOCO,VAN,TRUCK,CARRETA"
+        },
+        {
+            "fieldName": "origem",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "destino",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qilometragem",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "peso",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataDeColeta",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "embarcadora",
+            "otherEntityRelationshipName": "embarque",
+            "relationshipName": "embarcadora",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190321222134",
+    "entityTableName": "embarque",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

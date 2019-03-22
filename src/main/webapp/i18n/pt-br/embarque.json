@@ -1,0 +1,27 @@
+{
+    "cdfApp": {
+        "embarque": {
+            "home": {
+                "title": "Embarques",
+                "createLabel": "Criar novo Embarque",
+                "createOrEditLabel": "Criar ou editar Embarque"
+            },
+            "created": "Um novo Embarque foi criado com o identificador {{ param }}",
+            "updated": "Um Embarque foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Embarque foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Embarque {{ id }}?"
+            },
+            "detail": {
+                "title": "Embarque"
+            },
+            "categoriaDeVeiculo": "Categoria De Veiculo",
+            "origem": "Origem",
+            "destino": "Destino",
+            "qilometragem": "Qilometragem",
+            "peso": "Peso",
+            "dataDeColeta": "Data De Coleta",
+            "embarcadora": "Embarcadora"
+        }
+    }
+}

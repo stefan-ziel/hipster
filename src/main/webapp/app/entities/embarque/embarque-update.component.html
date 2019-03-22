@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-embarque-heading" jhiTranslate="cdfApp.embarque.home.createOrEditLabel">Create or edit a Embarque</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!embarque.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="embarque.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.categoriaDeVeiculo" for="field_categoriaDeVeiculo">Categoria De Veiculo</label>
+                    <select class="form-control" name="categoriaDeVeiculo" [(ngModel)]="embarque.categoriaDeVeiculo" id="field_categoriaDeVeiculo" >
+                        <option value="VUC">{{'cdfApp.CategoriaDeVeiculo.VUC' | translate}}</option>
+                        <option value="TOCO">{{'cdfApp.CategoriaDeVeiculo.TOCO' | translate}}</option>
+                        <option value="VAN">{{'cdfApp.CategoriaDeVeiculo.VAN' | translate}}</option>
+                        <option value="TRUCK">{{'cdfApp.CategoriaDeVeiculo.TRUCK' | translate}}</option>
+                        <option value="CARRETA">{{'cdfApp.CategoriaDeVeiculo.CARRETA' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.origem" for="field_origem">Origem</label>
+                    <input type="text" class="form-control" name="origem" id="field_origem"
+                        [(ngModel)]="embarque.origem" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.destino" for="field_destino">Destino</label>
+                    <input type="text" class="form-control" name="destino" id="field_destino"
+                        [(ngModel)]="embarque.destino" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.qilometragem" for="field_qilometragem">Qilometragem</label>
+                    <input type="number" class="form-control" name="qilometragem" id="field_qilometragem"
+                        [(ngModel)]="embarque.qilometragem" required/>
+                    <div [hidden]="!(editForm.controls.qilometragem?.dirty && editForm.controls.qilometragem?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.qilometragem?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.qilometragem?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.peso" for="field_peso">Peso</label>
+                    <input type="number" class="form-control" name="peso" id="field_peso"
+                        [(ngModel)]="embarque.peso" required/>
+                    <div [hidden]="!(editForm.controls.peso?.dirty && editForm.controls.peso?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.peso?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.peso?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.dataDeColeta" for="field_dataDeColeta">Data De Coleta</label>
+                    <div class="d-flex">
+                        <input id="field_dataDeColeta" type="datetime-local" class="form-control" name="dataDeColeta" [(ngModel)]="dataDeColeta" placeholder="YYYY-MM-DD HH:mm"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dataDeColeta?.dirty && editForm.controls.dataDeColeta?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dataDeColeta?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.dataDeColeta?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cdfApp.embarque.embarcadora" for="field_embarcadora">Embarcadora</label>
+                    <select class="form-control" id="field_embarcadora" name="embarcadora" [(ngModel)]="embarque.embarcadora" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="embarcadoraOption.id === embarque.embarcadora?.id ? embarque.embarcadora : embarcadoraOption" *ngFor="let embarcadoraOption of embarcadoras; trackBy: trackEmbarcadoraById">{{embarcadoraOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cdfApp.negociacaoDeFrete.home.title">Negociacao De Fretes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-negociacao-de-frete" [routerLink]="['/negociacao-de-frete/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="cdfApp.negociacaoDeFrete.home.createLabel">
+            Create new Negociacao De Frete
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="negociacaoDeFretes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.categoriaDeVeiculo">Categoria De Veiculo</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.pesoDe">Peso De</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.pesoAte">Peso Ate</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.precoPorQuilometro">Preco Por Quilometro</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.prazoDeEntrega">Prazo De Entrega</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.embarcadora">Embarcadora</span></th>
+            <th><span jhiTranslate="cdfApp.negociacaoDeFrete.transportadora">Transportadora</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let negociacaoDeFrete of negociacaoDeFretes ;trackBy: trackId">
+                <td><a [routerLink]="['/negociacao-de-frete', negociacaoDeFrete.id, 'view' ]">{{negociacaoDeFrete.id}}</a></td>
+                <td jhiTranslate="{{'cdfApp.CategoriaDeVeiculo.' + negociacaoDeFrete.categoriaDeVeiculo}}">{{negociacaoDeFrete.categoriaDeVeiculo}}</td>
+                <td>{{negociacaoDeFrete.pesoDe}}</td>
+                <td>{{negociacaoDeFrete.pesoAte}}</td>
+                <td>{{negociacaoDeFrete.precoPorQuilometro}}</td>
+                <td>{{negociacaoDeFrete.prazoDeEntrega}}</td>
+                <td>
+                    <div *ngIf="negociacaoDeFrete.embarcadora">
+                        <a [routerLink]="['../embarcadora', negociacaoDeFrete.embarcadora?.id, 'view' ]" >{{negociacaoDeFrete.embarcadora?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="negociacaoDeFrete.transportadora">
+                        <a [routerLink]="['../transportadora', negociacaoDeFrete.transportadora?.id, 'view' ]" >{{negociacaoDeFrete.transportadora?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/negociacao-de-frete', negociacaoDeFrete.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/negociacao-de-frete', negociacaoDeFrete.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'negociacao-de-frete', { outlets: { popup: negociacaoDeFrete.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

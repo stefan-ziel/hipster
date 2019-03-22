@@ -1,0 +1,12 @@
+{
+    "cdfApp": {
+        "CategoriaDeVeiculo": {
+            "null": "",
+            "VUC": "VUC",
+            "TOCO": "TOCO",
+            "VAN": "VAN",
+            "TRUCK": "TRUCK",
+            "CARRETA": "CARRETA"
+        }
+    }
+}

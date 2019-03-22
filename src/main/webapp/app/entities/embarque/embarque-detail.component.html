@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="embarque">
+            <h2><span jhiTranslate="cdfApp.embarque.detail.title">Embarque</span> {{embarque.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cdfApp.embarque.categoriaDeVeiculo">Categoria De Veiculo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cdfApp.CategoriaDeVeiculo.' + embarque.categoriaDeVeiculo}}">{{embarque.categoriaDeVeiculo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.origem">Origem</span></dt>
+                <dd>
+                    <span>{{embarque.origem}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.destino">Destino</span></dt>
+                <dd>
+                    <span>{{embarque.destino}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.qilometragem">Qilometragem</span></dt>
+                <dd>
+                    <span>{{embarque.qilometragem}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.peso">Peso</span></dt>
+                <dd>
+                    <span>{{embarque.peso}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.dataDeColeta">Data De Coleta</span></dt>
+                <dd>
+                    <span>{{embarque.dataDeColeta}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.embarque.embarcadora">Embarcadora</span></dt>
+                <dd>
+                    <div *ngIf="embarque.embarcadora">
+                        <a [routerLink]="['/embarcadora', embarque.embarcadora?.id, 'view']">{{embarque.embarcadora?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/embarque', embarque.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

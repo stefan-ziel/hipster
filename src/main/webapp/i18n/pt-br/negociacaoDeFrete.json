@@ -1,0 +1,27 @@
+{
+    "cdfApp": {
+        "negociacaoDeFrete": {
+            "home": {
+                "title": "Negociacao De Fretes",
+                "createLabel": "Criar novo Negociacao De Frete",
+                "createOrEditLabel": "Criar ou editar Negociacao De Frete"
+            },
+            "created": "Um novo Negociacao De Frete foi criado com o identificador {{ param }}",
+            "updated": "Um Negociacao De Frete foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Negociacao De Frete foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Negociacao De Frete {{ id }}?"
+            },
+            "detail": {
+                "title": "Negociacao De Frete"
+            },
+            "categoriaDeVeiculo": "Categoria De Veiculo",
+            "pesoDe": "Peso De",
+            "pesoAte": "Peso Ate",
+            "precoPorQuilometro": "Preco Por Quilometro",
+            "prazoDeEntrega": "Prazo De Entrega",
+            "embarcadora": "Embarcadora",
+            "transportadora": "Transportadora"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "cdfApp": {
+        "embarcadora": {
+            "home": {
+                "title": "Embarcadoras",
+                "createLabel": "Criar nova Embarcadora",
+                "createOrEditLabel": "Criar ou editar Embarcadora"
+            },
+            "created": "Uma nova Embarcadora foi criada com o identificador {{ param }}",
+            "updated": "Uma Embarcadora foi atualizada com o identificador {{ param }}",
+            "deleted": "Uma Embarcadora foi deletada com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Embarcadora {{ id }}?"
+            },
+            "detail": {
+                "title": "Embarcadora"
+            },
+            "nome": "Nome"
+        }
+    }
+}

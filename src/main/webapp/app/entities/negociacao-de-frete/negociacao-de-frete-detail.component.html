@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="negociacaoDeFrete">
+            <h2><span jhiTranslate="cdfApp.negociacaoDeFrete.detail.title">Negociacao De Frete</span> {{negociacaoDeFrete.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.categoriaDeVeiculo">Categoria De Veiculo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cdfApp.CategoriaDeVeiculo.' + negociacaoDeFrete.categoriaDeVeiculo}}">{{negociacaoDeFrete.categoriaDeVeiculo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.pesoDe">Peso De</span></dt>
+                <dd>
+                    <span>{{negociacaoDeFrete.pesoDe}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.pesoAte">Peso Ate</span></dt>
+                <dd>
+                    <span>{{negociacaoDeFrete.pesoAte}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.precoPorQuilometro">Preco Por Quilometro</span></dt>
+                <dd>
+                    <span>{{negociacaoDeFrete.precoPorQuilometro}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.prazoDeEntrega">Prazo De Entrega</span></dt>
+                <dd>
+                    <span>{{negociacaoDeFrete.prazoDeEntrega}}</span>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.embarcadora">Embarcadora</span></dt>
+                <dd>
+                    <div *ngIf="negociacaoDeFrete.embarcadora">
+                        <a [routerLink]="['/embarcadora', negociacaoDeFrete.embarcadora?.id, 'view']">{{negociacaoDeFrete.embarcadora?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cdfApp.negociacaoDeFrete.transportadora">Transportadora</span></dt>
+                <dd>
+                    <div *ngIf="negociacaoDeFrete.transportadora">
+                        <a [routerLink]="['/transportadora', negociacaoDeFrete.transportadora?.id, 'view']">{{negociacaoDeFrete.transportadora?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/negociacao-de-frete', negociacaoDeFrete.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
