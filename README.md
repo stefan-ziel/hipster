@@ -1,6 +1,23 @@
 # cdf
 
-This application was generated using JHipster 5.8.2, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.8.2](https://www.jhipster.tech/documentation-archive/v5.8.2).
+JHipster 5.8.2 test application
+
+## Progress
+
+### Model
+
+![model](jhipster-jdl.png)
+
+### Services
+
+Implemented
+
+-   [http://localhost:8080/cdf/api/resultados-do-dia/{iso date}](http://localhost:8080/cdf/api/resultados-do-dia/2019-22-03)
+-   [http://localhost:8080/cdf/api/resultados-do-embarque/1101](http://localhost:8080/cdf/api/resultados-do-embarque/{id})
+
+### UI
+
+Just the generated stuff. Service call UI pending ...
 
 ## Development
 
